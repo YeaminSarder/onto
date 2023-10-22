@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="https://YeaminSarder.github.io/onto/coffee.xml"
+         xmlns="https://YeaminSarder.github.io/onto/coffee.xml#">
+
+<owl:Ontology rdf:about="https://YeaminSarder.github.io/onto/coffee.xml"/>
+
+<owl:ObjectProperty rdf:about="#has_roast">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Coffee"/>
+  <rdfs:range rdf:resource="#Roast"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#from_region">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Coffee"/>
+  <rdfs:range rdf:resource="#Region"/>
+  <owl:inverseOf rdf:resource="#grown_in"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#grown_in">
+  <rdfs:range rdf:resource="#Coffee"/>
+  <rdfs:domain rdf:resource="#Region"/>
+  <owl:inverseOf rdf:resource="#from_region"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Coffee">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Roast">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Dark_Roast">
+  <rdfs:subClassOf rdf:resource="#Roast"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Blonde_Roast">
+  <rdfs:subClassOf rdf:resource="#Roast"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Medium_Roast">
+  <rdfs:subClassOf rdf:resource="#Roast"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Region">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Latin_America">
+  <rdfs:subClassOf rdf:resource="#Region"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Asia_Pacific">
+  <rdfs:subClassOf rdf:resource="#Region"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Multi">
+  <rdfs:subClassOf rdf:resource="#Region"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Veranda">
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Coffee"/>
+        <owl:Restriction>
+          <owl:hasValue rdf:resource="#Blonde_Roast"/>
+          <owl:onProperty rdf:resource="#has_roast"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:someValuesFrom rdf:resource="#Region"/>
+          <owl:onProperty rdf:resource="#from_region"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:allValuesFrom rdf:resource="#Latin_America"/>
+          <owl:onProperty rdf:resource="#from_region"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Coffee"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Pike">
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Coffee"/>
+        <owl:Restriction>
+          <owl:hasValue rdf:resource="#Medium_Roast"/>
+          <owl:onProperty rdf:resource="#has_roast"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:someValuesFrom rdf:resource="#Region"/>
+          <owl:onProperty rdf:resource="#from_region"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:allValuesFrom rdf:resource="#Latin_America"/>
+          <owl:onProperty rdf:resource="#from_region"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Coffee"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#latin_america1">
+  <rdf:type rdf:resource="#Latin_America"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#coffee1">
+  <rdf:type rdf:resource="#Coffee"/>
+  <has_roast rdf:resource="#Blonde_Roast"/>
+  <from_region rdf:resource="#latin_america1"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#coffee2">
+  <rdf:type rdf:resource="#Coffee"/>
+  <has_roast rdf:resource="#Medium_Roast"/>
+  <from_region rdf:resource="#latin_america1"/>
+</owl:NamedIndividual>
+
+
+</rdf:RDF>
